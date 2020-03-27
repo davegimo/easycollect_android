@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
         webSettings.setJavaScriptEnabled(true);
 
         // REMOTE RESOURCE
-        mWebView.loadUrl("https://whispering-sea-51078.herokuapp.com/#/home");
+        mWebView.loadUrl("https://vetrina.cloud/#/home");
         mWebView.setWebViewClient(new MyWebViewClient());
 
         // LOCAL RESOURCE
