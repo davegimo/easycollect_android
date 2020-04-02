@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EasyCollect</string>
+    <string name="app_name">ColliGo</string>
     <string name="action_settings">Settings</string>
 
     <string name="title_activity_tutorial">TutorialActivity</string>
