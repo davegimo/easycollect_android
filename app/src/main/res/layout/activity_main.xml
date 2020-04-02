@@ -7,5 +7,22 @@
         android:id="@+id/activity_main_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center">
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/loading_spinner"
+            android:layout_width="50dip"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_height="50dip"
+            android:indeterminateTint="@color/colorSecondary"
+            android:backgroundTintMode="multiply"
+            android:layout_centerInParent="true"
+            android:indeterminate="true">
+        </androidx.core.widget.ContentLoadingProgressBar>
 
+    </LinearLayout>
 </RelativeLayout>
