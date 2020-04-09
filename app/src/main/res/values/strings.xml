@@ -10,4 +10,6 @@
     <string name="web_error_desc">Forse è un problema di rete. Riprova a caricare la pagina!</string>
 
     <string name="title_activity_web_error">WebErrorActivity</string>
+    <string name="notification_error_ssl_cert_invalid">Dai il permesso</string>
+
 </resources>

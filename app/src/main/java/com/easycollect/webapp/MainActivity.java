@@ -38,14 +38,31 @@ public class MainActivity extends Activity {
         loadingSpinner = findViewById(R.id.loading_spinner);
 
         // REMOTE RESOURCE
-        mWebView.loadUrl("https://vetrina.cloud/");
+        mWebView.loadUrl("https://colligo.shop/");
 
         // old WebViewClient
         //mWebView.setWebViewClient(new MyWebViewClient());
 
         mWebView.setWebViewClient(new WebViewClient() {
-            public void onReceivedSslError (WebView view, SslErrorHandler handler, SslError error) {
-                handler.proceed() ;
+
+            @Override
+            public void onReceivedSslError(WebView view, final SslErrorHandler handler, SslError error) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage(R.string.notification_error_ssl_cert_invalid);
+                builder.setPositiveButton("continue", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        handler.proceed();
+                    }
+                });
+                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        handler.cancel();
+                    }
+                });
+                final AlertDialog dialog = builder.create();
+                dialog.show();
             }
 
             @Override
