@@ -9,6 +9,7 @@ import android.net.http.SslError;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -32,17 +33,15 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         mWebView = findViewById(R.id.activity_main_webview);
 
+        // OPTIMIZED WEB SETTINGS FOR EMBEDDED VUE.JS
         WebSettings webSettings = mWebView.getSettings();
+        webSettings.setDomStorageEnabled(true);
         webSettings.setJavaScriptEnabled(true);
 
         loadingSpinner = findViewById(R.id.loading_spinner);
 
-        // REMOTE RESOURCE
-        mWebView.loadUrl("https://colligo.shop/");
 
-        // old WebViewClient
-        //mWebView.setWebViewClient(new MyWebViewClient());
-
+        // SET CLIENTS
         mWebView.setWebViewClient(new WebViewClient() {
 
             @Override
@@ -100,37 +99,14 @@ public class MainActivity extends Activity {
                 startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getApplicationContext().startActivity(startIntent);
 
-                /**
-                 * Old web error logic, it showed up a Dialog.. now we have @WebErrorActivity
-                 */
-
-                /*
-
-                webView.loadUrl("about:blank");
-
-                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                alertDialog.setTitle("Errore");
-                alertDialog.setMessage("La pagina al momento non è disponibile, ci scusiamo per il disagio");
-                alertDialog.setButton("Ricarica", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                        startActivity(getIntent());
-                    }
-                });
-
-                alertDialog.show();
-
-                //Don't forget to call supper!
-                super.onReceivedError(webView, errorCode, description, failingUrl);
-
-                */
 
 
             }
         });
+        mWebView.setWebChromeClient(new WebChromeClient());
 
-        // LOCAL RESOURCE
-        // mWebView.loadUrl("file:///android_asset/index.html");
+        // REMOTE RESOURCE
+        mWebView.loadUrl("https://colligo.shop");
     }
 
 
