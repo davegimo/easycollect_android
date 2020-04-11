@@ -7,7 +7,7 @@ android {
         applicationId "com.easycollect.webapp"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 3
+        versionCode 5
         versionName "1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

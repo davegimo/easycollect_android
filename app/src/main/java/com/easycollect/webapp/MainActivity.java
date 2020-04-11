@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.view.View;
@@ -73,10 +74,18 @@ public class MainActivity extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading (WebView view, String url){
                 //Code to parse url
+                //System.out.println(url);
                 if (url.contains("#/utenti")){
                     TutorialActivity.showTutorial(MainActivity.this);
                     return true;
                 }
+                if(url.startsWith("tel:") || url.startsWith("whatsapp:") || url.contains("me")) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+                    return true;
+                }
+
                 return false;
             }
 
